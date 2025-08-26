@@ -1,0 +1,68 @@
+<div class="page-header">
+  <div class="container">
+    <h1 class="page-title">Our Products</h1>
+    <p class="page-subtitle">Discover amazing products at great prices</p>
+    <div class="search-bar">
+  <i class="bi bi-search"></i>
+  <input type="text" placeholder="Search products..." />
+  
+</div>
+
+
+
+  
+
+  </div>
+</div>
+
+<div class="container">
+  <!--Category Filters -->
+ <!-- <div class="category-filters mb-4">
+    <div class="d-flex justify-content-center flex-wrap gap-2">
+      <button class="filter-btn" 
+              [class.active]="selectedCategory === 'all'"
+              <!-- (click)="filterByCategory('all')"> 
+        
+      </button>
+      <button class="filter-btn" 
+              [class.active]="selectedCategory === 'tshirts'"
+              (click)="filterByCategory('tshirts')">
+        T-Shirts
+      </button>
+      <button class="filter-btn" 
+              [class.active]="selectedCategory === 'shoes'"
+              (click)="filterByCategory('shoes')">
+        Shoes
+      </button>
+      <button class="filter-btn" 
+              [class.active]="selectedCategory === 'watches'"
+              (click)="filterByCategory('watches')">
+        Watches
+      </button>
+      <button class="filter-btn" 
+              [class.active]="selectedCategory === 'bags'"
+              (click)="filterByCategory('bags')">
+        Bags
+      </button>
+    </div>
+  </div>  -->
+
+  <div class="row product-grid">
+    <div class="col-lg-3 col-md-4 col-sm-6 mb-4" *ngFor="let item of products">
+      <div class="product-card" (click)="viewDetails(item)">
+        <div class="product-badge">{{item.variant + 'variant'}}</div>
+        <div class="product-image-container">
+          <img [src]="item.thumbnail" [alt]="item.title" class="product-image">
+        </div>
+                  <div class="product-body">
+             <h6 class="product-title">{{item.title}}</h6>
+             <h6 class="product-category">{{item.category}}</h6>
+            <div class="product-price">£{{item.price}}</div>
+            <div class="product-seller">Sold by: {{item.seller}}</div>
+                         <button class="btn btn-success btn-sm product-cartBtn"><i class="fas fa-shopping-cart"></i> Add To Cart</button>
+            
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

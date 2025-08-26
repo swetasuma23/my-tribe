@@ -1,0 +1,49 @@
+<div class="container mt-4" *ngIf="product">
+ <div class="row justify-content-center product-container">
+    <!-- Product Image -->
+    <div class="col-md-5">
+      <div class="product-image-container">
+        <img [src]="product.thumbnail" [alt]="product.title" class="product-image">
+      </div>
+    </div>
+
+    <!-- Product Info Card -->
+    <div class="col-md-7">
+      <div class="product-card">
+        <!-- Title -->
+        <h4 class="product-title">{{product.title}}</h4>
+
+        <!-- Color + Quantity -->
+       
+        <!-- <p><strong>Qty:</strong> 1</p> -->
+
+        <!-- Quantity Box -->
+        <div class="quantity-box">
+          <label for="quantity"><strong>Quantity:</strong></label>
+          <select id="quantity" class="form-select w-auto">
+            <option *ngFor="let q of [1,2,3,4,5]">{{q}}</option>
+          </select>
+        </div>
+
+        <!-- Specifications -->
+        <div class="specifications-box">
+          <h6>Specifications:</h6>
+          <div class="specs-row">
+           <p class="details"><span>{{product.description}}</span></p>
+          </div>
+        </div>
+
+        <!-- Price -->
+        <div class="price-section">
+          <p class="price">₹{{product.price}}</p>
+          <p class="stock"><span>9 available</span></p>
+        </div>
+
+        <!-- Add to Cart -->
+        <button class="btn btn-success add-to-cart-btn w-100">
+          <i class="fas fa-shopping-cart"></i> Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

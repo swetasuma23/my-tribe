@@ -1,0 +1,116 @@
+/* Container for both boxes - ADD THIS */
+.product-container {
+  display: flex;
+  gap: 20px;
+  align-items: stretch; /* This makes both flex items same height */
+  min-height: 500px; /* Set a minimum height for consistency */
+}
+
+/* Image Box */
+.product-image-container {
+  flex: 1;                 /* allow equal flex grow */
+  text-align: center;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;           /* center image */
+  justify-content: center;
+  align-items: center;
+  /* Remove any fixed heights or max-heights that might conflict */
+}
+
+.product-image {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+}
+
+.product-card {
+  flex: 1;                 /* equal width & height */
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #eee;
+  padding: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;  /* allow inner content flow */
+  justify-content: space-between;
+  /* Height will be determined by the parent flex container */
+}
+
+.product-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #222;
+}
+
+/* Quantity Box */
+.quantity-box {
+  margin: 15px 0;
+}
+
+.quantity-box label {
+  margin-right: 10px;
+}
+
+.form-select {
+  display: inline-block;
+}
+
+/* Specifications */
+.specifications-box {
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  flex-grow: 1; /* This will help fill available space */
+}
+
+.specifications-box h6 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.specs-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+/* Price */
+.price-section {
+  margin: 15px 0;
+}
+
+.price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: darkslategray;
+}
+
+.stock {
+  font-size: 0.9rem;
+  color: darkslategray;
+}
+
+/* Add to Cart */
+.add-to-cart-btn {
+  background: darkslategray;
+  border: none;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: auto; /* Push button to bottom */
+}
+
+.add-to-cart-btn:hover {
+  background: darkslategrey;
+}

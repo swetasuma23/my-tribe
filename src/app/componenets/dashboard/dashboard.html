@@ -1,0 +1,144 @@
+<div class="container-fluid vh-100 d-flex flex-column p-0 bg-light">
+  <!-- App Name -->
+  <div class="py-2 bg-white text-center shadow-sm">
+    <h1 class="m-0 text-primary">MyTribe</h1>
+  </div>
+
+  <!-- Header with Search -->
+ <div class="p-3 bg-white shadow-sm">
+  <div class="container">
+    <div class="input-group search-box">
+      
+      <!-- Search Icon -->
+      <span class="input-group-text bg-white border-end-0">
+        <i class="bi bi-search"></i>
+      </span>
+
+      <!-- Search Input -->
+      <input type="text" 
+             class="form-control border-start-0 ps-2" 
+             placeholder="Search for products...">
+
+      <!-- Search Button -->
+      <button class="btn btn-primary px-4" type="button">
+        Search
+      </button>
+
+    </div>
+  </div>
+</div>
+
+
+  <!-- Categories Navigation -->
+  <div class="py-3 bg-white shadow-sm position-relative">
+    <div class="container">
+      <div class="d-flex justify-content-center">
+
+        @for (category of categories; track category.name) {
+          <div class="menu-item mx-2">
+            <button class="btn btn-light rounded-pill px-4 menu-trigger" 
+                    type="button">
+              {{category.name}}
+              <i class="bi bi-chevron-down ms-1"></i>
+            </button>
+            <div class="menu-dropdown">
+              @for (item of category.items; track item) {
+                <a class="menu-option" >
+                  <i class="bi bi-circle-fill text-primary me-2" style="font-size: 6px;"></i>
+                  {{item}}
+                </a>
+              }
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Sliding Images Carousel -->
+   <!-- this is the engine that powers carousel till interval =1500-->
+
+  <div class="d-flex align-items-center justify-content-center bg-light p-0" style="height: 80vh; min-height: 300px;">
+    <div id="carouselExampleIndicators" class="carousel slide w-100 h-100"
+         data-bs-ride="carousel"    
+         data-bs-interval="1500">   <!-- Slide changes every 1.5 seconds -->
+
+      <div class="carousel-indicators">
+        <button *ngFor="let image of carouselImages; let i = index" type="button" data-bs-target="#carouselExampleIndicators"
+                [attr.data-bs-slide-to]="i"
+                [class.active]="i === 0"
+                [attr.aria-current]="i === 0 ? 'true' : null"
+                [attr.aria-label]="'Slide ' + (i + 1)">
+        </button>
+      </div>
+      <div class="carousel-inner rounded shadow w-100 h-100" style="height: 31vh; min-height: 160px;">
+        <div *ngFor="let image of carouselImages; let i = index" class="carousel-item" [class.active]="i === 0">
+          <img [src]="image" class="d-block w-100 h-100 img-fluid" style="object-fit: cover; height: 31vh; min-height: 160px;"
+               alt="Fashion Collection Slide {{i + 1}}" (error)="handleImageError()">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+ 
+
+
+  <!-- Image Selection -->
+  <div class="container mt-3">
+    <h5 class="mb-3">Select an Image to view products</h5>
+    <div class="row">
+      <div class="col-3" *ngFor="let image of carouselImages; let i = index">
+        <img [src]="image" 
+         class="img-thumbnail" 
+          (click)="navigateToImageCategory(i)"
+           style="cursor: pointer;">
+        <p class="mt-2 text-center small text-muted">
+          {{ imageDescriptions[i] }}
+        </p>
+      </div>
+    </div>
+  </div>
+
+<<!-- Bottom Navigation -->
+<nav class="navbar navbar-expand bg-white border-top p-3">
+  <div class="container d-flex justify-content-evenly">
+
+    <!-- Home -->
+    <button class="nav-btn"
+            [class.active]="activeTab === 'home'"
+            (click)="navigateTo('home')">
+      <i class="bi bi-house fs-4 d-block"></i>
+      <span class="small">Home</span>
+    </button>
+
+    <!-- Wishlist -->
+    <button class="nav-btn"
+            [class.active]="activeTab === 'wishlist'"
+            (click)="navigateTo('wishlist')">
+      <i class="bi bi-heart fs-4 d-block"></i>
+      <span class="small">Wishlist</span>
+    </button>
+
+    <!-- Cart -->
+    <button class="nav-btn"
+            [class.active]="activeTab === 'cart'"
+            (click)="navigateTo('cart')">
+      <i class="bi bi-cart fs-4 d-block"></i>
+      <span class="small">Cart</span>
+    </button>
+
+  </div>
+</nav>
+
+
+
+
+
+</div>

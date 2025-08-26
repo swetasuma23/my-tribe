@@ -1,0 +1,140 @@
+<div class="d-flex justify-content-center align-items-center vh-100 bg-light">
+  <div class="card p-4 shadow-sm" style="width: 100%; max-width: 500px;">
+    <h1 class="text-center mb-4 fw-bold">Create Account</h1>
+
+    <form #form="ngForm" (ngSubmit)="registerFormSubmit()" novalidate>
+
+      <!-- First Name -->
+      <div class="mb-3">
+        <label class="form-label">First Name</label>
+        <input type="text" class="form-control"
+          [(ngModel)]="registerData.firstName" name="firstName" required #firstName="ngModel"/>
+        <div class="text-danger small" *ngIf="firstName.invalid && firstName.touched">First Name is required.</div>
+      </div>
+
+      <!-- Last Name -->
+      <div class="mb-3">
+        <label class="form-label">Last Name</label>
+        <input type="text" class="form-control"
+          [(ngModel)]="registerData.lastName" name="lastName" required #lastName="ngModel"/>
+        <div class="text-danger small" *ngIf="lastName.invalid && lastName.touched">Last Name is required.</div>
+      </div>
+
+      <!-- Email -->
+      <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control"
+          [(ngModel)]="registerData.email" name="email" required email #email="ngModel"/>
+        <div class="text-danger small" *ngIf="email.invalid && email.touched">
+          <div *ngIf="email.errors?.['required']">Email is required.</div>
+          <div *ngIf="email.errors?.['email']">Enter a valid email with '@'.</div>
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="mb-3">
+        <label class="form-label">Phone</label>
+        <input type="tel" class="form-control"
+          [(ngModel)]="registerData.phone" name="phone" required pattern="^[0-9]{10}$" #phone="ngModel"/>
+        <div class="text-danger small" *ngIf="phone.invalid && phone.touched">
+          <div *ngIf="phone.errors?.['required']">Phone is required.</div>
+          <div *ngIf="phone.errors?.['pattern']">Enter a valid 10-digit phone number.</div>
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="mb-3">
+        <label class="form-label">Address</label>
+        <textarea class="form-control"
+          [(ngModel)]="registerData.address" name="address" required #address="ngModel" rows="2"></textarea>
+        <div class="text-danger small" *ngIf="address.invalid && address.touched">Address is required.</div>
+      </div>
+
+
+
+
+      <!-- Password Field -->
+<div class="mb-3">
+  <label class="form-label">Password</label>
+  <input [type]="showPassword ? 'text' : 'password'" class="form-control"
+    [(ngModel)]="registerData.password"
+    name="password"
+    required
+    minlength="7"
+    pattern="^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{7,}$"
+    #password="ngModel"/>
+
+  <div class="text-danger small" *ngIf="password.invalid && password.touched">
+    <div *ngIf="password.errors?.['required']">Password is required.</div>
+    <div *ngIf="password.errors?.['minlength']">Minimum 7 characters required.</div>
+    <div *ngIf="password.errors?.['pattern']">
+      Must include: 1 uppercase, 1 number, 1 special character.
+    </div>
+  </div>
+</div>
+
+<!-- Confirm Password Field -->
+<div class="mb-3">
+  <label class="form-label">Confirm Password</label>
+  <input [type]="showPassword ? 'text' : 'password'" class="form-control"
+    [(ngModel)]="registerData.confirmPassword"
+    name="confirmPassword"
+    required
+    #confirmPassword="ngModel"/>
+
+  <div class="text-danger small" *ngIf="confirmPassword.touched">
+    <div *ngIf="confirmPassword.errors?.['required']">Confirm Password is required.</div>
+    <div *ngIf="registerData.password !== registerData.confirmPassword">
+      Passwords do not match.
+    </div>
+  </div>
+</div>
+
+
+      <!-- Password -->
+      <!-- <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input [type]="showPassword ? 'text' : 'password'" class="form-control"
+          [(ngModel)]="registerData.password" name="password" required minlength="7" #password="ngModel"/>
+        <div class="text-danger small" *ngIf="password.invalid && password.touched">
+          <div *ngIf="password.errors?.['required']">Password is required.</div>
+          <div *ngIf="password.errors?.['minlength']">Min 7 characters.</div>
+          <div *ngIf="!isPasswordStrong(registerData.password) && password.touched">
+            Must include: 1 uppercase, 1 number, 1 special char.
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Confirm Password -->
+      <!-- <div class="mb-3">
+        <label class="form-label">Confirm Password</label>
+        <input [type]="showPassword ? 'text' : 'password'" class="form-control"
+          [(ngModel)]="registerData.confirmPassword" name="confirmPassword" required #confirmPassword="ngModel"/>
+        <div class="text-danger small" *ngIf="confirmPassword.invalid && confirmPassword.touched">
+          <div *ngIf="confirmPassword.errors?.['required']">Confirm Password is required.</div>
+          <div *ngIf="registerData.password !== registerData.confirmPassword && confirmPassword.touched">
+            Passwords do not match.
+          </div>
+        </div>
+      </div> -->
+
+      <!-- Show Password -->
+      <div class="form-check mb-3">
+        <input type="checkbox" class="form-check-input" id="showPasswordCheckbox" (change)="togglePassword()"/>
+        <label class="form-check-label" for="showPasswordCheckbox">Show Password</label>
+      </div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn-success w-100"
+        [disabled]="form.invalid || !isPasswordStrong(registerData.password) || registerData.password !== registerData.confirmPassword">
+        Register
+      </button>
+
+      <!-- Redirect -->
+      <div class="text-center mt-3">
+        <p>Already have an account? <a routerLink="/login">Login here</a></p>
+      </div>
+
+    </form>
+  </div>
+</div>
